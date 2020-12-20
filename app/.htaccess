@@ -1,0 +1,4 @@
+# Jika ada user yang buka folder app dan folder di dalamnya,
+# selama tidak ada file index maka janga tampilkan isinya
+# BLOCK if(index == null)
+Options -Indexes

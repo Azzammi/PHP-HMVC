@@ -1,0 +1,10 @@
+# Untuk menghindari kesalahan / ambigu ketika memanggil folder atau file
+# dalam publik ini
+Options -Multiviews
+
+RewriteEngine On
+#Kalau url yang ditulis adalah nama folder maka diabaikan
+RewriteCond %{REQUEST_FILENAME} !-d
+#Kalau url yang ditulis adalah nama folder/file yang sama dengan controller dan method maka diabaikan
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [L]
