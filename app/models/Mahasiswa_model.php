@@ -27,22 +27,23 @@ class Mahasiswa_model{
             "jurusan" => "Sistem Informasi"
         ]
     ];
-    private $dbh; // database handler
-    private $stmt; // statement
 
-    public function __construct(){
-        // data source name
-        $dsn = 'mysql:host=localhost;dbname=db_mahasiswa';
+    private $table = 'tmahasiswa';
+    private $db;
 
-        try{
-            $this->dbh = new PDO($dsn, 'root', 1234);
-        }catch (PDOException $e){
-            die($e->getMessage());
-        }
+    public function __construct()
+    {
+        $this->db = new Database;
     }
+
     public function getAllMahasiswa(){
-        $this->stmt = $this->dbh->prepare("SELECT * FROM tmahasiswa");
-        $this->stmt->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        $this->db->query("SELECT * FROM " . $this->table);
+        return $this->db->resultSet();
+    }
+
+    public function getMahasiswaById($id){
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE id=:id");
+        $this->db->bind('id', $id);
+        return $this->db->single();
     }
 }
