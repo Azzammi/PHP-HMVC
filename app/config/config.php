@@ -1,6 +1,6 @@
 <?php
 //Absolute Url
-define('BASEURL','http://localhost:81/phpmvc/public');
+define('BASEURL','http://localhost:81/phphmvc/public');
 
 //DB
 define('DB_HOST','localhost');

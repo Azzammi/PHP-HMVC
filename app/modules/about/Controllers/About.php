@@ -7,14 +7,14 @@ class About extends Controller {
         $data['umur'] = $umur;
         $data['judul'] = 'About';
 
-        $this->view('templates/header',$data);
-        $this->view('about/index', $data);
-        $this->view('templates/footer');
+        $this->template('templates/header',$data);
+        $this->view('index', $data);
+        $this->template('templates/footer');
     }
     public  function page(){
         $data['judul'] = 'Halaman Page';
-        $this->view('templates/header',$data);
+        $this->template('templates/header',$data);
         $this->view('about/page');
-        $this->view('templates/footer');
+        $this->template('templates/footer');
     }
 }

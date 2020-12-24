@@ -10,12 +10,12 @@ class App{
     {
         $url = $this->parseURL();
         // Nama Controller
-        if( file_exists('../app/controllers/'. $url[0] . '.php')){
+        if( file_exists('../app/modules/'. $url[0] . '/controllers/' . $url[0] . '.php')){
             $this->controller = $url[0];
             unset($url[0]);
         }
 
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once '../app/modules/' . $this->controller . '/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         // Nama Method
