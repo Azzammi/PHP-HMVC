@@ -1,48 +1,59 @@
 <div class="container mt-4">
-    <h2>Daftar Mahasiswa</h2>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#formModal">
-        Tambah Data Mahasiswa
-    </button>
-        <table class="table mt-4">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Npm</th>
-                <th scope="col">email</th>
-                <th scope="col">Jurusan</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
+    <div class="row">
+        <div class="col-lg-12">
+            <?php Flasher::flash(); ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Daftar Mahasiswa</h2>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#formModal">
+                Tambah Data Mahasiswa
+            </button>
+            <table class="table mt-4">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Npm</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Jurusan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
                 $count = 0;
                 foreach ($data['mhs'] as $mhs) :
                     $count += 1; ?>
-                <tr>
-                    <th scope="row"><?= $count; ?></th>
-                    <td><?= $mhs['nama']; ?></td>
-                    <td><?= $mhs['npm']; ?></td>
-                    <td><?= $mhs['email']; ?></td>
-                    <td><?= $mhs['jurusan']; ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+                    <tr>
+                        <th scope="row"><?= $count; ?></th>
+                        <td><?= $mhs['nama']; ?></td>
+                        <td><?= $mhs['npm']; ?></td>
+                        <td><?= $mhs['email']; ?></td>
+                        <td><?= $mhs['jurusan']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
 
-        <ul class="list-group">
-            <?php
-            $count = 0;
-            foreach ($data['mhs'] as $mhs) :  ?>
-                <tr>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?= $mhs['nama']; ?>
-                        <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary">Detail</a>
-                    </li>
-                </tr>
-            <?php endforeach; ?>
-        </ul>
-</div>
+            <ul class="list-group">
+                <?php
+                $count = 0;
+                foreach ($data['mhs'] as $mhs) :  ?>
+                    <tr>
+                        <li class="list-group-item">
+                            <?= $mhs['nama']; ?>
+                            <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge badge-danger float-right ml-1" onclick="return confirm('Yakin?');">Hapus</a>
+                            <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary float-right">Detail</a>
+                        </li>
+                    </tr>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+
 <!-- Modal -->
 <div class="modal fade" id="formModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
